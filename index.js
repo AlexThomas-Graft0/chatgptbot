@@ -1,4 +1,8 @@
+const express = require("express");
+
 require("dotenv").config();
+const app = express();
+const PORT = process.env.PORT || 3030;
 
 const { Client, GatewayIntentBits } = require("discord.js");
 
@@ -47,5 +51,8 @@ client.on("messageCreate", async (message) => {
   }
 });
 
-client.login(process.env.DISCORD_TOKEN);
-console.log("Chatbot started!");
+app.listen(PORT, () => {
+  console.log(`server started on port ${PORT}`);
+  client.login(process.env.DISCORD_TOKEN);
+  console.log("Chatbot started!");
+});
